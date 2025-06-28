@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIPH - Contact</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/560NBLqP/AIPH.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --secondary: #2196F3;
+            --accent: #FF9800;
+            --dark: #212529;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color:rgb(240, 240, 240);
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .logo-img {
+            height: 40px; /* Ajustez selon vos besoins */
+            width: auto;
+            margin-right: 10px; /* Espace entre le logo et le texte */
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-top: 5rem;
+        }
+
+        .contact-header:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 1rem auto;
+        }
+        
+        /* Formulaire */
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Informations de contact */
+        .contact-info {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .info-item {
+            margin-bottom: 2rem;
+        }
+        
+        .info-item h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-item h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .location-section {
+            padding: 4rem 5%;
+        }
+
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .building-image img {
+            width: 100%;
+            height: 234px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-container {
+            height: 234px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .success { color: green; padding: 10px; background: #e8f5e9; }
+        .error { color: red; padding: 10px; background: #ffebee; }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 5%;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .logo-img {
+                height: 30px; /* Taille réduite sur mobile */
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="https://i.postimg.cc/560NBLqP/AIPH.png" class="logo-img">
+                <span>AIPH</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="AIPH.html">AIPH</a></li>
+                <li><a href="prestation.html">Prestations</a></li>
+                <li><a href="emploi.html">Emploi</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1>Contactez-nous</h1>
+            <p>Pour nous contacter, remplissez le formulaire ou appelez-nous directement.</p>
+        </div>
+        
+        <!-- Formulaire de contact -->
+        <div class="contact-form">
+            <form id="contactForm" method="POST">
+
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telephone">Numéro de téléphone</label>
+                    <input type="telephone" id="telephone" name="telephone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="raison">Raison du contact</label>
+                    <select id="raison" name="raison" required>
+                        <option value="" disabled selected hidden >-- Sélectionnez une option --</option>
+                        <option value="emploi">Emploi</option>
+                        <option value="prestation">Prestation</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Envoyer le message</button>
+            </form>
+        </div>
+        
+        <!-- Informations de contact -->
+        <div class="contact-info">
+            <div class="info-item">
+                <h3><i class="fas fa-map-marker-alt"></i> ADRESSE</h3>
+                <p>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/place/AIPH/@49.4724274,5.851674,17.77z/data=!4m6!3m5!1s0x47eacb6cc0da83bf:0x63e7a2e79bbd714e!8m2!3d49.4728914!4d5.8524499!16s%2Fg%2F11mjv3h7rw?entry=ttu&g_ep=EgoyMDI1MDYxMS4wIKXMDSoASAFQAw%3D%3D" style="color: inherit; text-decoration: none;">
+                        <i>Rue de maulage 54920 Villers la montagne</li>
+                    </a>
+                </p>
+            </div>
+            
+            <div class="info-item">
+                <h3><i class="fas fa-envelope"></i> E-MAIL</h3>
+                <p><a href="mailto:aiph54@hotmail.fr" style="color: inherit; text-decoration: none;" class="contact-link">aiph54@hotmail.fr</a></p>
+            </div>
+
+            <div class="info-item">
+                <h3><i class="fas fa-phone"></i> TÉLÉPHONE</h3>
+                <p><a href="tel:+33982555707" style="color: inherit; text-decoration: none;" class="contact-link">09 82 55 57 07</a></p>
+            </div>
+            
+            <div class="info-item">
+                <h3><i class="fas fa-clock"></i> HORAIRES</h3>
+                <p>Ouverts du lundi au vendredi<br>8h-12h et 13h-17h</p>
+            </div>
+
+            <div class="info-item">
+                <h3><i class="fas fa-id-card"></i> Numéro SIRET & Code APE</h3>
+                <p>529 134 009 000 32 / 7830Z</p>
+            </div>
+        </div>
+    </div>
+    <section class="location-section">
+        <div class="location-container">
+            <!-- Image du bâtiment -->
+            <div class="building-image">
+                <img src="https://static.wixstatic.com/media/ef103d_6573fdbfaae048ab8bd74ecf7b9ea482~mv2.jpg/v1/fill/w_600,h_234,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/20616015_300788893726244_912941294900058184_o.jpg" loading="lazy">
+            </div>
+
+            <!-- Carte Google Maps -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.2133003093036!2d5.850328000518804!3d49.472894253148866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47eacb6cc0da83bf%3A0x63e7a2e79bbd714e!2sAIPH!5e1!3m2!1sfr!2sfr!4v1750420985633!5m2!1sfr!2sfr" 
+                    width="100%" 
+                    height="234px" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="rapides"
+                    aria-label="Localisation de l'AIPH sur Google Maps">
+                </iframe>
+            </div>
+        </div>
+    </section>
+</body>
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>Nos Réseaux Sociaux</h3>
+                <div class="social-links">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Associationaiph/"><i class="fab fa-facebook-f"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/aiph.54/"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UCxn7oNkz0Y4jyJYpY5ziIwQ"><i class="fab fa-youtube"></i></a>
+                    <a target="_blank" rel="noopener noreferrer"href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        <div class="footer-column">
+            <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="aiph.html">AIPH</a></li>
+                    <li><a href="prestation.html">Prestations</a></li>
+                    <li><a href="emploi.html">Emploi</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        <div class="footer-column">
+            <h3>Contact</h3>
+                <ul>
+                    <li>
+                        <a target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/kDEMYAdk5fsVtYtd8">
+                            <i class="fas fa-map-marker-alt"></i> Rue de maulage 54920 Villers la montagne</li>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+33982555707" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-phone"></i> 09 82 55 57 07
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:aiph54@hotmail.fr" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-envelope"></i> aiph54@hotmail.fr
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+<script>
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    
+    // Initialisation EmailJS
+    emailjs.init('rkL4vDsXreqpLjse0');
+    
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        console.log('Tentative d\'envoi du formulaire...');
+        
+        // Construction de l'objet de données
+        const formData = {
+            telephone: this.telephone.value,
+            nom: this.nom.value,
+            prenom: this.prenom.value,
+            email: this.email.value,
+            raison: this.raison.value,
+            message: this.message.value
+        };
+        
+        console.log('Données du formulaire:', formData);
+        
+        // Envoi avec log dans la console
+        emailjs.send('service_5v9kpcn', 'template_mnpq5qs', formData)
+        .then(() => {
+            console.log('✅ Message envoyé avec succès!');
+            e.target.reset();
+        })
+        .catch((error) => {
+            console.error('❌ Erreur d\'envoi:', error);
+            if (error.response) {
+            console.error('Détails:', error.response.text);
+            }
+        });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    </script>
+</html>

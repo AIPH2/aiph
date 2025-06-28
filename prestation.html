@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIPH - Nos Prestations</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/560NBLqP/AIPH.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --secondary: #2196F3;
+            --accent: #FF9800;
+            --white: #ffffff;
+            --dark: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color:rgb(240, 240, 240);
+        }
+        
+        /* Header avec fond vert */
+       header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .logo-img {
+            height: 40px; /* Ajustez selon vos besoins */
+            width: auto;
+            margin-right: 10px; /* Espace entre le logo et le texte */
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Conteneur principal */
+        .prestations-section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 1rem auto;
+        }
+        
+        /* Grille de cartes */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        /* Carte individuelle */
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        /* En-tête de carte */
+        .card-header {
+            padding: 2rem 2rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .card-title {
+            margin: 0;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+        
+        /* Corps de carte */
+        .card-body {
+            padding: 1.5rem 2rem;
+            flex-grow: 1;
+        }
+        
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .service-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-list li:before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+        }
+        
+        /* Pied de carte */
+        .card-footer {
+            padding: 0 2rem 2rem;
+            text-align: center;
+        }
+        
+        .card-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        /* Variations de cartes */
+        .card-particuliers .card-header {
+            background: var(--primary);
+        }
+        
+        .card-particuliers .card-icon {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .card-particuliers .card-btn {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .card-particuliers .card-btn:hover {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .card-collectivites .card-header {
+            background: var(--secondary);
+        }
+        
+        .card-collectivites .card-icon {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .card-collectivites .card-btn {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .card-collectivites .card-btn:hover {
+            background: transparent;
+            color: var(--secondary);
+            border-color: var(--secondary);
+        }
+        
+        .card-entreprises .card-header {
+            background: var(--accent);
+        }
+        
+        .card-entreprises .card-icon {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .card-entreprises .card-btn {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .card-entreprises .card-btn:hover {
+            background: transparent;
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 5%;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .logo-img {
+                height: 30px; /* Taille réduite sur mobile */
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .client-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about {
+                flex-direction: column;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (identique à la page d'accueil) -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="https://i.postimg.cc/560NBLqP/AIPH.png" class="logo-img">
+                <span>AIPH</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="aiph.html" class="active">AIPH</a></li>
+                <li><a href="prestation.html">Prestations</a></li>
+                <li><a href="emploi.html">Emploi</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="prestations-section">
+        <h2 class="section-title">Nos Prestations</h2>
+        
+        <div class="cards-container">
+            <!-- Carte Particuliers -->
+            <div class="service-card card-particuliers">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="card-title">Particuliers</h3>
+                </div>
+                
+                <div class="card-body">
+                    <ul class="service-list">
+                        <li>Entretien des Espaces verts</li>
+                        <li>Entretien de la maison</li>
+                        <li>Petit Travaux ( intérieur / extérieur )</li>
+                        <li>Manutention - Débarras</li>
+                    </ul>
+                </div>
+                
+                <div class="card-footer">
+                    <a href="prestation-particuliers.html" class="card-btn">Demander un devis</a>
+                </div>
+            </div>
+            
+            <!-- Carte Collectivités -->
+            <div class="service-card card-collectivites">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3 class="card-title">Collectivités</h3>
+                </div>
+                
+                <div class="card-body">
+                    <ul class="service-list">
+                        <li>Entretien des Espaces verts</li>
+                        <li>Nettoyage de Locaux</li>
+                        <li>Bâtiment - Travaux de finitions</li>
+                        <li>Manutention - Débarras</li>
+                        <li>Encadrement d'Enfants</li>
+                    </ul>
+                </div>
+                
+                <div class="card-footer">
+                    <a href="prestation-collectivites.html" class="card-btn">Demander un devis</a>
+                </div>
+            </div>
+            
+            <!-- Carte Entreprises -->
+            <div class="service-card card-entreprises">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="card-title">Entreprises</h3>
+                </div>
+                
+                <div class="card-body">
+                    <ul class="service-list">
+                        <li>Entretien des Espaces verts</li>
+                        <li>Nettoyage de Locaux</li>
+                        <li>Bâtiment - Travaux de finitions</li>
+                        <li>Manutention - Débarras</li>
+                    </ul>
+                </div>
+                
+                <div class="card-footer">
+                    <a href="prestation-entreprises.html" class="card-btn">Demander un devis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Nos Réseaux Sociaux</h3>
+                <div class="social-links">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Associationaiph/"><i class="fab fa-facebook-f"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/aiph.54/"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UCxn7oNkz0Y4jyJYpY5ziIwQ"><i class="fab fa-youtube"></i></a>
+                    <a target="_blank" rel="noopener noreferrer"href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="aiph.html">AIPH</a></li>
+                    <li><a href="prestation.html">Prestations</a></li>
+                    <li><a href="emploi.html">Emploi</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li>
+                        <a target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/kDEMYAdk5fsVtYtd8">
+                            <i class="fas fa-map-marker-alt"></i> Rue de maulage 54920 Villers la montagne</li>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+33982555707" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-phone"></i> 09 82 55 57 07
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:aiph54@hotmail.fr" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-envelope"></i> aiph54@hotmail.fr
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.client-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIPH - Qui sommes-nous ?</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/560NBLqP/AIPH.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Réutilisez le même CSS que la page d'accueil */
+        :root {
+            --primary: #4CAF50;
+            --secondary: #2196F3;
+            --accent: #FF9800;
+            --dark: #212529;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color:rgb(240, 240, 240);
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .logo-img {
+            height: 40px; /* Ajustez selon vos besoins */
+            width: auto;
+            margin-right: 10px; /* Espace entre le logo et le texte */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Ajouts spécifiques à la page AIPH */
+        .page-header {
+            background: linear-gradient(rgba(48, 104, 50, 0.8), rgba(23, 54, 24, 0.8));
+            padding: 10rem 5% 6rem;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(0, 0, 0, 0.3) 100%);
+            z-index: 0;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+        }
+
+        .page-header p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s both;
+        }
+        
+        .presentation {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .presentation h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .presentation-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .presentation-content-1 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            flex-direction: row-reverse;
+        }
+        
+        .presentation-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .presentation-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .presentation-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .presentation-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .values {
+            padding: 4rem 5%;
+            margin: 3rem 0;
+        }
+        
+        .values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .values h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        /* Partenaires section */
+        .partners {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .partners h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .partner-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .partner-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .partner-card img {
+            max-width: 100%;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            transition: all 0.3s;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 5%;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+
+            .logo-img {
+                height: 30px; /* Taille réduite sur mobile */
+            }
+
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about {
+                flex-direction: column;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .presentation-content {
+                flex-direction: column;
+            }
+            
+            .partner-card {
+                height: 100px;
+            }
+
+            .comparison-slider {
+                height: 350px;
+            }
+            
+            .slider-handle {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (identique à la page d'accueil) -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="https://i.postimg.cc/560NBLqP/AIPH.png" class="logo-img">
+                <span>AIPH</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="aiph.html" class="active">AIPH</a></li>
+                <li><a href="prestation.html">Prestations</a></li>
+                <li><a href="emploi.html">Emploi</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Insertion Professionnelle grâce à l'AIPH</h1>
+        <p>Notre association s'engage dans l'insertion professionnelle à travers des activités utiles à la collectivité</p>
+    </section>
+
+    <!-- Présentation de l'association -->
+    <section class="presentation">
+        <h2>Qui sommes-nous ?</h2>
+        <div class="presentation-content">
+            <div class="presentation-text">
+                <p>L'AIPH, qui signifie Association Intermédiaire du Pays Haut, fait partie des structures d'insertion par l'activité economique dont la zone d'activité s'étend de Mont Saint Martin à Longwy, jusque Longuyon et Villerupt, ainsi que toutes les communes avoisinantes. </p>
+                <p>Nous sommes une Association Intermédiaire c'est-à-dire une structure conventionnée par l'état et le Département de Meurthe et Moselle, dont le but est d'aider l'insertion professionnelle et sociale de personnes que différents freins maintiennent éloignées de l'emploi. Nous proposons à ces personnes des missions dans différents domaines d'activités afin de leur permettre de (re)prendre pied dans le milieu de travail, et nous travaillons en même temps leur projet professionnel afin de leur permettre de (re)trouver un emploi durable. </p>
+            </div>
+            <div class="presentation-img">
+                <img src="equipe-travail.jpg" loading="lazy" alt="Notre équipe en action">
+            </div>
+        </div>
+    </section>
+
+    <section class="presentation">
+        <h2>Notre Centre d'Action</h2>
+        <div class="presentation-content-1">
+            <div class="presentation-text">
+                <p>AIPH propose des services à domicile pour tous dans le secteur du Pays-Haut, entre Villerupt et Petit-Failly. Particuliers, entreprises, bailleurs, collectivités ou associations, nous vous accompagnons dans les tâches du quotidien que vous ne pouvez ou ne souhaitez pas faire : entretien d'espaces verts, nettoyage de logements ou de locaux professionnels, petits travaux de finition comme la peinture ou le bricolage, débarras de caves ou de greniers, mais aussi accompagnement et encadrement d’enfants à domicile ou lors d’événements.</p>
+                <p>Quel que soit votre besoin, notre équipe est là pour vous apporter une solution simple, efficace et adaptée à votre situation.</p>
+            </div>
+            <div class="presentation-img">
+                <img src="https://drive.google.com/uc?export=view&id=1fm30wv_q7s4pRLMVarwEvNO0lIrhb_Xv" loading="lazy" alt="Carte pays haut">
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos valeurs -->
+    <section class="values">
+        <div class="values-container">
+            <h2>Nos valeurs</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Solidarité</h3>
+                    <p>Nous croyons en la force du collectif et de l'entraide pour construire une société plus juste.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Insertion</h3>
+                    <p>Notre priorité est l'accompagnement vers l'emploi durable pour tous nos salariés.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Qualité</h3>
+                    <p>Nous nous engageons à fournir des services professionnels répondant aux attentes de nos clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partenaires et soutiens -->
+    <section class="partners">
+        <h2>Nos partenaires et soutiens</h2>
+        <div class="partners-grid">
+            <div class="partner-card">
+                <img src="https://i.ibb.co/GQTdxj7Q/image.png">
+            </div>
+            <div class="partner-card">
+                <img src="https://i.ibb.co/RkF1SYdG/DDETS-38-0.png">
+            </div>
+            <div class="partner-card">
+                <img src="https://static.wixstatic.com/media/ef103d_c15f9a92d3a64f6fb889e4be3d437f6e~mv2.png/v1/fill/w_293,h_203,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed.png">
+            </div>
+            <div class="partner-card">
+                <img src="https://cdn.francetravail.fr/studio/logos/marque/Logo_France_Travail_RVB_Horizontal_Coul_Positif.svg">
+            </div>
+            <div class="partner-card">
+                <img src="https://imgs.search.brave.com/yPPbW2j633QymBLl5fVLP3KB3sg52Z2ZNb1VRrUoUPc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YWQycy5vcmcvaW1h/Z2VzL3N0b3JpZXMv/ZmxleGljb250ZW50/L21fMDA0NDU2">
+            </div>
+            <div class="partner-card">
+                <img src="https://static.wixstatic.com/media/ef103d_99a64cacfb8e45069ff9e661962ef112~mv2.png/v1/fill/w_199,h_139,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/t%C3%A9l%C3%A9chargement%20(1).png">
+            </div>
+            <div class="partner-card">
+                <img src="https://static.wixstatic.com/media/ef103d_5eddac8a196647899d665957df041447~mv2.png/v1/crop/x_24,y_27,w_198,h_169/fill/w_219,h_188,al_c,lg_1,q_85,enc_avif,quality_auto/t%C3%A9l%C3%A9chargement.png">
+            </div>
+            <div class="partner-card">
+                <img src="https://static.wixstatic.com/media/ef103d_d04b6adf726e486ab892addc0ea48d92~mv2.png/v1/fill/w_225,h_118,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ef103d_d04b6adf726e486ab892addc0ea48d92~mv2.png">
+            </div>
+            <div class="partner-card">
+                <img src="https://www.valo.info/wp-content/uploads/2022/09/Valo-Logo.svg">
+            </div>
+            <div class="partner-card">
+                <img src="https://static.wixstatic.com/media/ef103d_2895179d4ea549cf855c7e3abe8913c4~mv2.jpg/v1/fill/w_271,h_88,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ef103d_2895179d4ea549cf855c7e3abe8913c4~mv2.jpg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (identique à la page d'accueil) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Nos Réseaux Sociaux</h3>
+                <div class="social-links">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Associationaiph/"><i class="fab fa-facebook-f"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/aiph.54/"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UCxn7oNkz0Y4jyJYpY5ziIwQ"><i class="fab fa-youtube"></i></a>
+                    <a target="_blank" rel="noopener noreferrer"href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="aiph.html">AIPH</a></li>
+                    <li><a href="prestation.html">Prestations</a></li>
+                    <li><a href="emploi.html">Emploi</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li>
+                        <a target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/kDEMYAdk5fsVtYtd8">
+                            <i class="fas fa-map-marker-alt"></i> Rue de maulage 54920 Villers la montagne</li>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+33982555707" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-phone"></i> 09 82 55 57 07
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:aiph54@hotmail.fr" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-envelope"></i> aiph54@hotmail.fr
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle (identique à la page d'accueil)
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const slider = document.getElementById('slider-control');
+        const beforeContainer = document.querySelector('.before-container');
+        const handle = document.querySelector('.slider-handle');
+        
+        if (slider && beforeContainer && handle) {
+            slider.addEventListener('input', function() {
+                const value = this.value + '%';
+                beforeContainer.style.width = value;
+                handle.style.left = value;
+            });
+            
+            // Initialisation
+            beforeContainer.style.width = slider.value + '%';
+            handle.style.left = slider.value + '%';
+        }
+    });
+        
+        // Animation on scroll pour les éléments spécifiques à cette page
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.presentation-content, .value-card, .partner-card, .presentation-content-1');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.presentation-content, .value-card, .partner-card, .presentation-content-1').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

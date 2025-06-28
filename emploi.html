@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIPH - Offres d'Emploi </title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/560NBLqP/AIPH.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --secondary: #2196F3;
+            --accent: #FF9800;
+            --dark: #212529;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color:rgb(240, 240, 240);
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .logo-img {
+            height: 40px; /* Ajustez selon vos besoins */
+            width: auto;
+            margin-right: 10px; /* Espace entre le logo et le texte */
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Ajouts spécifiques à la page AIPH */
+        .page-header {
+            background: linear-gradient(rgba(48, 104, 50, 0.8), rgba(23, 54, 24, 0.8));
+            padding: 10rem 5% 6rem;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(0, 0, 0, 0.3) 100%);
+            z-index: 0;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+        }
+
+        .page-header p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s both;
+        }
+        
+        .presentation {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .presentation h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .presentation-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .presentation-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .presentation-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .presentation-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .presentation-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .values {
+            background: var(--white);
+            padding: 4rem 5%;
+            margin: 3rem 0;
+        }
+        
+        .values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .values h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        /* Section Motivation */
+        .motivation-section {
+            padding: 5rem 5%;
+            margin-top: 70px;
+        }
+        
+        .motivation-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .motivation-container h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .motivation-container ul {
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .motivation-container li {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .motivation-container li:before {
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            right: 1.5rem;
+        }
+        
+        /* Video Section */
+        .video-section {
+            padding: 3rem 5%;
+            text-align: center;
+            background-color:rgb(240, 240, 240);
+        }
+        
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 3rem 5%;
+            background-color:rgb(240, 240, 240);
+            text-align: center;
+        }
+        
+        .contact-box {
+            display: inline-block;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 1rem;
+            text-align: left;
+        }
+        
+        .contact-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info i {
+            color: var(--accent);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+        
+        /* Jobs Section */
+        .jobs-section {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .jobs-section h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+        
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .job-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent);
+        }
+        
+        .job-card h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .apply-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .apply-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 5%;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .logo-img {
+                height: 30px; /* Taille réduite sur mobile */
+            }
+
+            .contact-box {
+                width: 100%;
+                margin: 1rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="https://i.postimg.cc/560NBLqP/AIPH.png" class="logo-img">
+                <span>AIPH</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="aiph.html">AIPH</a></li>
+                <li><a href="prestation.html">Prestations</a></li>
+                <li><a href="emploi.html" class="active">Emploi</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Nous Recrutons</h1>
+        <p>Rejoignez une équipe qui agit chaque jour pour offrir une seconde chance à ceux qui en ont besoin.</p>
+    </section>
+
+    <!-- Section Motivation -->
+    <section class="motivation-section">
+        <div class="motivation-container">
+            <h2>Rejoignez Notre Équipe</h2>
+            <p>Nous sommes constamment à la recherche de personnel qui adhère au parcours professionnel que nous proposons :</p>
+            
+            <ul>
+                <li>Réaliser des missions et/ou des formations pour monter en compétences et (re)trouver le goût du travail</li>
+                <li>Travailler sur son projet professionnel en compagnie de notre accompagnatrice socio-professionnelle afin de (re)trouver un emploi durable.</li>
+            </ul>
+            
+            <p>Étant un organisme subventionné par différentes entités, les candidats doivent cependant répondre à certains critères d'éligibilité.</p>
+            
+            <p>Ainsi, si vous êtes bénéficiaire de RSA, de l'AAH, de l'ASS et/ou que cela fait plus de deux ans que vous êtes inscrit(e) à Pôle Emploi, vous êtes éligible d'emblée à un parcours d'insertion par notre biais et nous pourrons vous proposer des missions et un travail sur votre projet professionnel.</p>
+            
+            <p>Toutefois, si vous n'êtes pas bénéficiaire d'une ces prestations, il sera tout de même possible de venir travailler avec nous, sous réserve de combinaison de différents critères (senior de + de 50 ans, jeunes de - 26 ans, niveau d'études CAP, 1 an d'inscription à Pôle Emploi, résident en quartier prioritaire de la Ville...) N'hésitez pas à nous contacter pour faire le point, nous déterminerons ensemble la faisabilité d'un parcours.</p>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <h2>Vidéo explication salariés</h2>
+            <div class="video-wrapper">
+                <!-- Remplacez l'URL par votre vidéo YouTube -->
+                <iframe src="https://www.youtube.com/embed/video_id" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-box">
+            <h3>Contactez-nous</h3>
+            <div class="contact-info">
+                <a href="mailto:aiph54@hotmail.fr" style="color: inherit; text-decoration: none;" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>aiph54@hotmail.fr</span>
+                </a>
+            </div>
+            <div class="contact-info">
+                <a href="tel:+33982555707" style="color: inherit; text-decoration: none;" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                    <span>09 82 55 57 07</span>
+                </a>
+            </div>
+            <p>Nos bureaux sont ouverts du lundi au vendredi, de 8h-12h et 13h00-17h.</p>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="jobs-section">
+        <h2>Missions proposées</h2>
+        <div class="jobs-grid">
+            <!-- Job 1 -->
+            <div class="job-card">
+                <h3>Ouvrier des Espaces Verts</h3>
+                <p>Maniement des outils d'espaces verts : tondeuse, taille haie, débroussailleuse, souffleur... Permis B recommandé</p>
+                <a href="contact.html" class="apply-btn">Je postule</a>
+            </div>
+            
+            <!-- Job 2 -->
+            <div class="job-card">
+                <h3>Agent de Nettoyage</h3>
+                <p>Connaissance des produits et procédés, Rigueur et minutie, Travail d'équipe possible. Permis B préféré</p>
+                <a href="contact.html" class="apply-btn">Je postule</a>
+            </div>
+            
+            <!-- Job 3 -->
+            <div class="job-card">
+                <h3>Manœuvre Manutention</h3>
+                <p>Port de charges lourdes et/ou encombrantes; Soin aux objets et aux locaux ; travail en équipe. Permis B recommandé</p>
+                <a href="contact.html" class="apply-btn">Je postule</a>
+            </div>
+            
+            <!-- Job 4 -->
+            <div class="job-card">
+                <h3>Manœuvre BTP / Maçon</h3>
+                <p>Travail sur voirie et bâtiment (gros oeuvre et finitions) Débutant accepté. Permis B recommandé</p>
+                <a href="contact.html" class="apply-btn">Je postule</a>
+            </div>
+            
+            <!-- Job 5 -->
+            <div class="job-card">
+                <h3>Encadrement Enfants</h3>
+                <p>Expérience avec les enfants, Bafa et/CAP petite enfance préféré, Travail dans le périscolaire voire ATSEM.</p>
+                <a href="contact.html" class="apply-btn">Je postule</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Nos Réseaux Sociaux</h3>
+                <div class="social-links">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Associationaiph/"><i class="fab fa-facebook-f"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/aiph.54/"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UCxn7oNkz0Y4jyJYpY5ziIwQ"><i class="fab fa-youtube"></i></a>
+                    <a target="_blank" rel="noopener noreferrer"href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="aiph.html">AIPH</a></li>
+                    <li><a href="prestation.html">Prestations</a></li>
+                    <li><a href="emploi.html">Emploi</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li>
+                        <a target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/kDEMYAdk5fsVtYtd8">
+                            <i class="fas fa-map-marker-alt"></i> Rue de maulage 54920 Villers la montagne</li>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+33982555707" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-phone"></i> 09 82 55 57 07
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:aiph54@hotmail.fr" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-envelope"></i> aiph54@hotmail.fr
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
